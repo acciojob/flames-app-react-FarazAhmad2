@@ -1,16 +1,68 @@
-import React, {Component, useState} from "react";
-import '../styles/App.css';
+import React, { useState } from "react";
+import "../styles/App.css";
 
-class App extends Component {
-    render() {
+const App = () => {
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
+  const [relationship, setRelationship] = useState("");
 
-        return(
-            <div id="main">
-               {/* Do not remove the main div */}
-            </div>
-        )
+  const calculateRelationship = () => {
+    if (input1.trim() == "" || input2.trim() == "") {
+      setRelationship("Please Enter valid input");
+    } else {
+      let s1 = input1.toLowerCase();
+      let s2 = input2.toLowerCase();
+      for (const char of input1.toLowerCase()) {
+        if (input2.toLowerCase().includes(char)) {
+          s1 = s1.replaceAll(char, "");
+          s2 = s2.replaceAll(char, "");
+        }
+      }
+      const sum = (s1.length + s2.length) % 6;
+      const flames = [
+        "Siblings",
+        "Friends",
+        "love",
+        "Affection",
+        "Marriage",
+        "Enemy",
+      ];
+      setRelationship(`${flames[sum]}`);
     }
-}
+  };
 
+  const clearInputs = () => {
+    setInput1("");
+    setInput2("");
+    setRelationship("");
+  };
+
+  return (
+    <div id="main">
+      <input
+        type="text"
+        data-testid="input1"
+        value={input1}
+        onChange={(e) => setInput1(e.target.value)}
+      />
+      <input
+        type="text"
+        data-testid="input2"
+        value={input2}
+        onChange={(e) => setInput2(e.target.value)}
+      />
+      <button
+        data-testid="calculate_relationship"
+        onClick={calculateRelationship}
+      >
+        Calculate Relationship Future
+      </button>
+      <button data-testid="clear" onClick={clearInputs}>
+        Clear
+      </button>
+      {relationship && <h3 data-testid="answer">{relationship}</h3>}
+    </div>
+  );
+};
 
 export default App;
