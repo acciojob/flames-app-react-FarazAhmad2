@@ -10,10 +10,10 @@ const App = () => {
     if (input1.trim() == "" || input2.trim() == "") {
       setRelationship("Please Enter valid input");
     } else {
-      let s1 = input1;
-      let s2 = input2;
-      for (const char of input1) {
-        if (input2.includes(char)) {
+      let s1 = input1.toLowerCase();
+      let s2 = input2.toLowerCase();
+      for (const char of input1.toLowerCase()) {
+        if (input2.toLowerCase().includes(char)) {
           s1 = s1.replace(char, "");
           s2 = s2.replace(char, "");
         }
