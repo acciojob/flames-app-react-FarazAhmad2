@@ -7,28 +7,35 @@ const App = () => {
   const [relationship, setRelationship] = useState("");
 
   const calculateRelationship = () => {
-    if (input1.trim() == "" || input2.trim() == "") {
+    if (input1.trim() === "" || input2.trim() === "") {
       setRelationship("Please Enter valid input");
-    } else {
-      let s1 = input1.toLowerCase();
-      let s2 = input2.toLowerCase();
-      for (const char of input1.toLowerCase()) {
-        if (input2.toLowerCase().includes(char)) {
-          s1 = s1.replace(char, "");
-          s2 = s2.replace(char, "");
-        }
-      }
-      const sum = (s1.length + s2.length) % 6;
-      const flames = [
-        "Siblings",
-        "Friends",
-        "love",
-        "Affection",
-        "Marriage",
-        "Enemy",
-      ];
-      setRelationship(`${flames[sum]}`);
+      return;
     }
+
+    let s1 = input1.toLowerCase().split("");
+    let s2 = input2.toLowerCase().split("");
+
+    s1.forEach((char) => {
+      const index = s2.indexOf(char);
+      if (index !== -1) {
+        s2.splice(index, 1);
+      } else {
+        s1 = s1.filter((c) => c !== char);
+      }
+    });
+
+    const remainingLength = s1.length + s2.length;
+    const sum = remainingLength % 6;
+
+    const flames = [
+      "Siblings",
+      "Friends",
+      "Love",
+      "Affection",
+      "Marriage",
+      "Enemy",
+    ];
+    setRelationship(flames[sum]);
   };
 
   const clearInputs = () => {
