@@ -42,12 +42,14 @@ const App = () => {
       <input
         type="text"
         data-testid="input1"
+        name="name1"
         value={input1}
         onChange={(e) => setInput1(e.target.value)}
       />
       <input
         type="text"
         data-testid="input2"
+        name="name2"
         value={input2}
         onChange={(e) => setInput2(e.target.value)}
       />
@@ -60,7 +62,7 @@ const App = () => {
       <button data-testid="clear" onClick={clearInputs}>
         Clear
       </button>
-      {relationship && <h3 data-testid="answer">{relationship}</h3>}
+      <h3 data-testid="answer">{relationship}</h3>
     </div>
   );
 };
