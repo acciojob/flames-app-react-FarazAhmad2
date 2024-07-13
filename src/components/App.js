@@ -26,14 +26,13 @@ const App = () => {
 
     const remainingLength = s1.length + s2.length;
     const sum = remainingLength % 6;
-
     const flames = [
-      "Siblings",
-      "Friends",
-      "Love",
-      "Affection",
-      "Marriage",
-      "Enemy",
+        "Friends",
+        "Love",
+        "Affection",
+        "Marriage",
+        "Enemy",
+        "Siblings",
     ];
     setRelationship(flames[sum]);
   };
