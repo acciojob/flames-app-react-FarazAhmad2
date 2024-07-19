@@ -17,8 +17,8 @@ const App = () => {
 
     for (const char of input1.toLowerCase()) {
       if (input2.toLowerCase().includes(char)) {
-        s1 = s1.replaceAll(char,'')
-        s2 = s2.replaceAll(char,'')
+        s1 = s1.replace(char,'')
+        s2 = s2.replace(char,'')
       }
     }
 
