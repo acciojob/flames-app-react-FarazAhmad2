@@ -12,17 +12,18 @@ const App = () => {
       return;
     }
 
-    let s1 = input1.toLowerCase().split("");
-    let s2 = input2.toLowerCase().split("");
+    let s1 = input1.toLowerCase();
+    let s2 = input2.toLowerCase();
 
-    s1.forEach((char) => {
-      const index = s2.indexOf(char);
-      if (index !== -1) {
-        s2.splice(index, 1);
-      } else {
-        s1 = s1.filter((c) => c !== char);
+    for (const char of input1.toLowerCase()) {
+      if (input2.toLowerCase().includes(char)) {
+        s1 = s1.replaceAll(char,'')
+        s2 = s2.replaceAll(char,'')
       }
-    });
+    }
+
+    console.log(s1);
+    console.log(s2);
 
     const remainingLength = s1.length + s2.length;
     const sum = remainingLength % 6;
