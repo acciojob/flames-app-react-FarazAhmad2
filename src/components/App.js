@@ -12,11 +12,11 @@ const App = () => {
       return;
     }
 
-    let s1 = input1.toLowerCase();
-    let s2 = input2.toLowerCase();
+    let s1 = input1;
+    let s2 = input2;
 
-    for (const char of input1.toLowerCase()) {
-      if (input2.toLowerCase().includes(char)) {
+    for (const char of input1) {
+      if (input2.includes(char)) {
         s1 = s1.replace(char,'')
         s2 = s2.replace(char,'')
       }
@@ -69,7 +69,7 @@ const App = () => {
       <button data-testid="clear" onClick={clearInputs}>
         Clear
       </button>
-      <h3 data-testid="answer">{relationship}</h3>
+      <h3 data-testid="answer"> {relationship}</h3>
     </div>
   );
 };
