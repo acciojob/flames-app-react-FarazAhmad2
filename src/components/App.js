@@ -26,7 +26,7 @@ const App = () => {
     console.log(s2);
 
     const remainingLength = s1.length + s2.length;
-    const sum = remainingLength % 6;
+    const sum = Math.floor(remainingLength % 6);
     const flames = [
         "Friends",
         "Love",
