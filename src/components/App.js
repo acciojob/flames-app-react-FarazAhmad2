@@ -6,37 +6,39 @@ const App = () => {
   const [input2, setInput2] = useState("");
   const [relationship, setRelationship] = useState("");
 
-  const calculateRelationship = () => {
-    if (input1.trim() === "" || input2.trim() === "") {
-      setRelationship("Please Enter valid input");
-      return;
-    }
-
-    let s1 = input1;
-    let s2 = input2;
-
-    for (const char of input1) {
-      if (input2.includes(char)) {
-        s1 = s1.replace(char,'')
-        s2 = s2.replace(char,'')
+  function calculateRelationship() {
+    // convert the names to arrays
+    let arr1 = input1.split('');
+    let arr2 = input2.split('');
+  
+    // remove common characters
+    for (let i = 0; i < arr1.length; i++) {
+      for (let j = 0; j < arr2.length; j++) {
+        if (arr1[i] === arr2[j]) {
+          arr1.splice(i, 1);
+          arr2.splice(j, 1);
+          i--;
+          break;
+        }
       }
     }
-
-    console.log(s1);
-    console.log(s2);
-
-    const remainingLength = s1.length + s2.length;
-    const sum = Math.floor(remainingLength % 6);
-    const flames = [
-      "Siblings",
-        "Friends",
-        "Love",
-        "Affection",
-        "Marriage",
-        "Enemy",
-    ];
-    setRelationship(flames[sum]);
-  };
+  
+    // calculate the sum and take modulus by 6
+    const sum = (arr1.length + arr2.length) % 6;
+  
+    // determine the relationship status
+    let status;
+    switch (sum) {
+      case 1: status = "Friends"; break;
+      case 2: status = "Love"; break;
+      case 3: status = "Affection"; break;
+      case 4: status = "Marriage"; break;
+      case 5: status = "Enemy"; break;
+      case 0: status = "Siblings"; break;
+      default: status = "Please Enter valid input";
+    }
+    setRelationship(status)
+  }
 
   const clearInputs = () => {
     setInput1("");
